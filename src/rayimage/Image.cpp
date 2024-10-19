@@ -45,9 +45,9 @@ void Image::WriteFile(const char * filename) {
     Color pixel = buffer[index];
     int offset = index * 4;
 
-    image[offset] = (unsigned int)floor(pixel.R()) * 255; 
-    image[offset + 1] = (unsigned int)floor(pixel.G()) * 255; 
-    image[offset + 2] = (unsigned int)floor(pixel.B()) * 255; 
+    image[offset] = (unsigned int)floor(pixel.R() * 255); 
+    image[offset + 1] = (unsigned int)floor(pixel.G() * 255); 
+    image[offset + 2] = (unsigned int)floor(pixel.B() * 255); 
     image[offset + 3] = 255;      // Alpha
   }
 
