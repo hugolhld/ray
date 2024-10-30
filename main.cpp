@@ -59,6 +59,8 @@ int main()
         }
     }
 
+    auto start = std::chrono::high_resolution_clock::now();
+
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
@@ -75,8 +77,16 @@ int main()
             Color pixelColor = scene.trace(ray);
             image.SetPixel(x, y, pixelColor);
         }
-        std::cout << "\rRendering: " << (y * 100 / height) << "%" << std::flush;
+        // Log time passed
+        auto current = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(current - start);
+        std::cout << "\rTime passed: " << duration.count() / 1000.0f << " seconds and " << (y * 100 / height) << "% done" << std::flush;
     }
+
+    // end the timer of the rendering
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    std::cout << "\nRendering time: " << duration.count() / 1000.0f << " seconds" << std::endl;
 
     image.WriteFile("test.png");
     std::cout << "\nRendering: 100%" << std::endl;
