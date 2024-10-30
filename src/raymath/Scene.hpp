@@ -76,5 +76,5 @@ public:
         }
 
         return Color(0, 0, 0); // Background color
-    }
+    }   
 };
