@@ -1,3 +1,8 @@
 add_library(raymath 
   ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Vector3D.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Ray.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Sphere.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Plane.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Scene.hpp
 )
