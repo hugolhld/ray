@@ -1,2 +1,4 @@
 /build/
 /out/
+/.cmake/api/v1/
+/.vscode/
