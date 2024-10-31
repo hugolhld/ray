@@ -4,6 +4,7 @@
 #include "Vector3D.hpp"
 #include "Ray.hpp"
 #include "Scene.hpp"
+#include "Material.hpp"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ int main()
     const float SPHERE_RADIUS = 0.4f;
     const int GRID_WIDTH = 7;
     const int GRID_DEPTH = 7;
+    Material chrome(Color(1.0f, 0.8f, 0.2f), 1.0f, 0.1f, 0.9f);
 
     for (int x = 0; x < GRID_WIDTH; x++)
     {
@@ -49,7 +51,7 @@ int main()
 
             scene.addSphere(Sphere(Vector3D(posX, posY, posZ),
                                    SPHERE_RADIUS,
-                                   color));
+                                   chrome));
         }
     }
 
@@ -66,13 +68,12 @@ int main()
             Color pixelColor = scene.trace(ray);
             image.SetPixel(x, y, pixelColor);
         }
-        // Log time passed
+
         auto current = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(current - start);
         std::cout << "\rTime passed: " << duration.count() / 1000.0f << " seconds and " << (y * 100 / height) << "% done" << std::flush;
     }
 
-    // end the timer of the rendering
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
     std::cout << "\nRendering time: " << duration.count() / 1000.0f << " seconds" << std::endl;

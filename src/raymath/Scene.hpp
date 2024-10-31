@@ -38,7 +38,7 @@ public:
                 closest_t = t;
                 hitPoint = ray.pointAt(t);
                 normal = (hitPoint - sphere.center).normalize();
-                surfaceColor = sphere.color;
+                surfaceColor = sphere.material.color;
                 reflectivity = 0.3f;
             }
         }

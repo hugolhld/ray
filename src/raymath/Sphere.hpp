@@ -2,15 +2,16 @@
 #include "Vector3D.hpp"
 #include "Ray.hpp"
 #include "Color.hpp"
+#include "Material.hpp"
 
 class Sphere {
 public:
     Vector3D center;
     float radius;
-    Color color;
+    Material material;
 
-    Sphere(const Vector3D& c, float r, const Color& col) 
-        : center(c), radius(r), color(col) {}
+    Sphere(const Vector3D& c, float r, const Material& mat) 
+        : center(c), radius(r), material(mat) {}
 
     bool intersect(const Ray& ray, float& t) const {
         Vector3D oc = ray.origin - center;
