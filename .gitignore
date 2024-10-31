@@ -2,3 +2,4 @@
 /out/
 /.cmake/api/v1/
 /.vscode/
+.DS_Store

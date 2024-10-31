@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Vector3D.hpp"
 #include "Ray.hpp"
 #include "Color.hpp"
@@ -15,6 +14,7 @@ public:
 
     bool intersect(const Ray& ray, float& t) const {
         Vector3D oc = ray.origin - center;
+        
         float a = ray.direction.dot(ray.direction);
         float b = 2.0f * oc.dot(ray.direction);
         float c = oc.dot(oc) - radius * radius;
