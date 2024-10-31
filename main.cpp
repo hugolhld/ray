@@ -29,12 +29,6 @@ int main()
                          1.0f));
 
     Vector3D cameraPos(0, 0, 2);
-    Vector3D cameraTarget(0, 0, -4);
-    Vector3D cameraUp(0, 1, 0);
-
-    Vector3D cameraDir = (cameraTarget - cameraPos).normalize();
-    Vector3D cameraRight = cameraDir.cross(cameraUp).normalize();
-    Vector3D cameraUpActual = cameraRight.cross(cameraDir).normalize();
 
     const float SPHERE_SPACING = 1.0f;
     const float SPHERE_RADIUS = 0.4f;
@@ -68,12 +62,7 @@ int main()
             float u = (2.0f * x / width - 1.0f) * aspect;
             float v = -(2.0f * y / height - 1.0f);
 
-            Vector3D direction = (cameraDir +
-                                  cameraRight * u +
-                                  cameraUpActual * v)
-                                     .normalize();
-
-            Ray ray(cameraPos, direction);
+            Ray ray(cameraPos, Vector3D(u, v, -1).normalize());
             Color pixelColor = scene.trace(ray);
             image.SetPixel(x, y, pixelColor);
         }

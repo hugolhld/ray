@@ -32,7 +32,6 @@ public:
         Color surfaceColor;
         float reflectivity = 0;
 
-        // Check sphere intersections
         for (const auto& sphere : spheres) {
             float t;
             if (sphere.intersect(ray, t) && t < closest_t) {
@@ -44,7 +43,6 @@ public:
             }
         }
 
-        // Check plane intersections
         for (const auto& plane : planes) {
             float t;
             if (plane.intersect(ray, t) && t < closest_t) {
@@ -57,14 +55,12 @@ public:
         }
 
         if (closest_t < INFINITY) {
-            // Simple diffuse lighting with light coming from above
             Vector3D lightDir(0, -1, -1);
             lightDir = lightDir.normalize();
 
             float diffuse = -normal.dot(lightDir);
             if (diffuse < 0) diffuse = 0;
 
-            // Calculate reflection
             Color reflectedColor(0, 0, 0);
             if (reflectivity > 0 && depth < MAX_DEPTH) {
                 Vector3D reflectDir = ray.direction - normal * (2 * ray.direction.dot(normal));
@@ -75,6 +71,6 @@ public:
             return surfaceColor * diffuse * (1 - reflectivity) + reflectedColor * reflectivity;
         }
 
-        return Color(0, 0, 0); // Background color
+        return Color(0, 0, 0);
     }   
 };

@@ -8,10 +8,10 @@ class Plane {
 public:
     Vector3D normal;
     float distance;
-    Color color1;  // Première couleur du damier
-    Color color2;  // Deuxième couleur du damier
+    Color color1;
+    Color color2;
     float reflectivity;
-    float checkSize; // Taille d'une case du damier
+    float checkSize;
 
     Plane(const Vector3D& n, float d, const Color& col1, const Color& col2, float refl = 0.5f, float size = 1.0f) 
         : normal(n.normalize()), distance(d), color1(col1), color2(col2), 
@@ -28,11 +28,9 @@ public:
     }
 
     Color getColorAt(const Vector3D& point) const {
-        // Création du motif en damier
         float x = floor(point.x / checkSize);
         float z = floor(point.z / checkSize);
         
-        // Si la somme est paire, retourne color1, sinon color2
         if (static_cast<int>(fabs(x + z)) % 2 == 0) {
             return color1;
         }
